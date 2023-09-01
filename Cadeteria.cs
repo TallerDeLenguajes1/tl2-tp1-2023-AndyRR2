@@ -71,6 +71,7 @@ public class Cadeteria{
         Console.WriteLine("Numero: " + pedido.Nro);
         Console.WriteLine("Observacion: " + pedido.Obs);
         Console.WriteLine("Estado: " + pedido.Estado);
+        Console.WriteLine("Precio: " + pedido.Precio);
         pedido.VerDatosCliente();
         pedido.VerDireccionCliente();
         }
@@ -79,14 +80,53 @@ public class Cadeteria{
         foreach (var pedido in ListaPedidosCadeteria) 
         {
             pedido.VerDatosCliente();
-            pedido.VerDireccionCliente();
+            pedido.VerDireccionCliente();    
+        }
+    }
+    public void CambiarEstadoPedido(int numero,int opcion){
+        foreach (var pedido in listaPedidosCadeteria)
+        {
+            if (pedido.Nro==numero)
+            {
+                switch(opcion){
+                    case 1:
+                    pedido.Estado="Entregado";
+                    break;
+                    case 2:
+                    pedido.Estado="Cancelado";
+                    break;
+                }
+            }
         }
     }
     public void RemoverPedidoCadeteria(int numero){
         listaPedidosCadeteria.RemoveAt(numero-1);
-        RemoverPedidoCadete(numero);
     }
-    public void AsignarPedidoACadete(int numero , int id){
+    public void AsignarCadeteAPedido(int id, int numero){
+        foreach (var pedido in listaPedidosCadeteria)
+        {
+            if (pedido.Nro==numero)
+            {
+                foreach (var cadete in listaDeCadetes)
+                {
+                    if (cadete.Id==id)
+                    {
+                        pedido.Cadete=cadete;
+                    }
+                }
+            }
+        }
+    }
+    public void mostrarCadeteDePedido(int numero){
+        foreach (var pedido in listaPedidosCadeteria)
+        {
+            if (pedido.Nro==numero)
+            {
+                pedido.MostrarCadete();
+            }
+        }
+    }
+    /*public void AsignarPedidoACadete(int numero , int id){
         foreach (var cadete in listaDeCadetes)
         {   
             if (cadete.Id==id){
@@ -94,8 +134,8 @@ public class Cadeteria{
                 Console.WriteLine("Asignado pedido: " + numero + " al cadete id: " + id);
             }
         }
-    } 
-    public void mostrarPedidosDeCadeteID(int id){
+    }*/
+    /*public void mostrarPedidosDeCadeteID(int id){
         foreach (var cadete in listaDeCadetes)
         {
             if (cadete.Id==id)
@@ -103,20 +143,14 @@ public class Cadeteria{
                 cadete.MostrarPedidosDelCadete();
             }
         }
-    }
-    public void CambiarEstadoDePedido(int numero, int opcion){
-        foreach (var cadete in listaDeCadetes)
-        {
-            cadete.CambiarEstadoPedido(numero, opcion);
-        }
-    }
-    public void RemoverPedidoCadete(int numero){
+    }*/
+    /*public void RemoverPedidoCadete(int numero){
         foreach (var cadete in listaDeCadetes)
         {
             cadete.RemoverPedido(numero);
         }
-    }
-    public void ReasignarPedido(int numero, int id){
+    }*/
+    /*public void ReasignarPedido(int numero, int id){
         foreach (var pedido in listaPedidosCadeteria)
         {
             if (pedido.Nro==numero)
@@ -125,7 +159,11 @@ public class Cadeteria{
                 AsignarPedidoACadete(numero, id);
             }
         }
-    }
+    }*/
+    /*public float JornalACobrar(int id){
+        
+        return(monto);
+    }*/
 
     
 

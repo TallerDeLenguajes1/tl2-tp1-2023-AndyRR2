@@ -9,13 +9,13 @@ public class Cadete{
     private string? nombre;
     private string? direccion;
     private double telefono;
-    private List<Pedido>? listadoDePedidos = new List<Pedido>();
+    //private List<Pedido>? listadoDePedidos = new List<Pedido>();
 
     public int Id { get => id; set => id = value; }
     public string? Nombre { get => nombre; set => nombre = value; }
     public string? Direccion { get => direccion; set => direccion = value; }
     public double Telefono { get => telefono; set => telefono = value; }
-    public List<Pedido>? ListadoDePedidos { get => listadoDePedidos; set => listadoDePedidos = value; }
+    //public List<Pedido>? ListadoDePedidos { get => listadoDePedidos; set => listadoDePedidos = value; }
 
     public Cadete(int id, string nombre, string direccion, double telefono){
         this.id = id;
@@ -30,46 +30,17 @@ public class Cadete{
         Console.WriteLine("Direccion: " + direccion);
         Console.WriteLine("Telefono: " + telefono);
     }
-    public void MostrarDatosCliente(){
-        foreach (var pedido in listadoDePedidos)
-        {
-            pedido.VerDatosCliente();
-            pedido.VerDireccionCliente();    
-        }
-    }
-    public void MostrarPedidosDelCadete(){
+    /*public void MostrarPedidosDelCadete(){
         foreach (var pedido in listadoDePedidos)
         {
             Console.WriteLine("Numero: " + pedido.Nro);
             Console.WriteLine("Observacion: " + pedido.Obs);
             Console.WriteLine("Estado: " + pedido.Estado);
+            Console.WriteLine("Precio: " + pedido.Precio);
             MostrarDatosCliente();
         }
-    }
-    public void CambiarEstadoPedido(int numero,int opcion){
-        foreach (var pedido in listadoDePedidos)
-        {
-            if (pedido.Nro==numero)
-            {
-                switch(opcion){
-                    case 1:
-                    pedido.Estado="Entregado";
-                    break;
-                    case 2:
-                    pedido.Estado="Cancelado";
-                    break;
-                }
-            }
-        }
-    }
-    public void RemoverPedido(int numero){
-        foreach (var pedido in listadoDePedidos)
-        {
-            if (pedido.Nro==numero)
-            {
-                listadoDePedidos.Remove(pedido);break;
-            }
-        }
-    }
+    }*/
+    
+    
     
 }
