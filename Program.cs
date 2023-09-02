@@ -1,19 +1,33 @@
 ﻿using System;
 using EspacioCadeteria;
 using EspacioPedido;
+using EspacioAccesoADatos;
+using EspacioCadete;
 
 public class Program{
     
     private static void Main(){
 
-      //Datos de la cadeteria
+      int opcion = 0;
+      Console.WriteLine("Cargar Datos con 1-CSV o 2-JSON");
+      string? entrada = Console.ReadLine();
+      bool result = int.TryParse(entrada, out opcion);
+      
+      AccesoADatos acceso = new AccesoADatos();
+      string? direccion = "Cadetes";
+      if (opcion==1)
+      {
+        acceso = new AccesoCSV();
+      }else if (opcion==2)
+      {
+        acceso = new AccesoJSON();
+      }
+      acceso.cargarCadetes(direccion);
+    
       double telefonoCadeteria = 326579254;
       string? nombreCadeteria = "Mensajes Cadeteria";
-      Cadeteria cadeteria = new Cadeteria(nombreCadeteria , telefonoCadeteria);
-      string? direccion = "Cadetes.csv"; 
-      cadeteria.cargarCadetes(direccion);
-
-      int opcion = 0;
+      Cadeteria cadeteria = new Cadeteria(nombreCadeteria , telefonoCadeteria, acceso.ListaCadetes);
+     
       Console.WriteLine("Opciones:");
       Console.WriteLine("1-Dar de Alta pedido");
       Console.WriteLine("2-Asignar cadete a pedido");
@@ -25,8 +39,8 @@ public class Program{
       Console.WriteLine("8-Mostrar pedidos de la cadeteria");
       Console.WriteLine("9-Eliminar pedido");
       Console.WriteLine("0-Cerrar");
-      string? entrada = Console.ReadLine();
-      bool result = int.TryParse(entrada, out opcion);
+       entrada = Console.ReadLine();
+       result = int.TryParse(entrada, out opcion);
       while (opcion!=0)
       {
         switch (opcion)

@@ -6,11 +6,11 @@ using System.Linq;
 using System.Xml;
 using EspacioCadete;
 using EspacioPedido;
+using EspacioAccesoADatos;
 
 public class Cadeteria{
     private string? nombre;
     private double telefono;
-    
     private List<Pedido> listaPedidosCadeteria = new List<Pedido>(); 
     private List<Cadete>? listaDeCadetes;
 
@@ -20,21 +20,12 @@ public class Cadeteria{
     public List<Pedido> ListaPedidosCadeteria { get => listaPedidosCadeteria; set => listaPedidosCadeteria = value; }
 
     //crea cadeteria
-    public Cadeteria(string nombre, double telefono){
+    public Cadeteria(string nombre, double telefono, List<Cadete> listaCadetes){
         this.nombre = nombre;
         this.telefono = telefono;
+        this.ListaDeCadetes = listaCadetes;
     }
-    public void cargarCadetes(string archivo){
-        List<Cadete> cadetes = new List<Cadete>();
-        var cadetesCargados = File.ReadAllLines(archivo)
-        .Skip(1).                           //Saltea el encabezado
-        Select(line => line.Split(',')).
-        Select(parts => new Cadete(int.Parse(parts[0]), parts[1], parts[2], double.Parse(parts[3])));
-        cadetes.AddRange(cadetesCargados);
-        ListaDeCadetes = cadetes;
-        Console.WriteLine("Cadetes cargados correctamente");
-    }
-        public void DarDeAltaPedido(){
+    public void DarDeAltaPedido(){
         int numero;
         string? obs, nombreCliente, direccion, referencia;
         double telefonoCliente;

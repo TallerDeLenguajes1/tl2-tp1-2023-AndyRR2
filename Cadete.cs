@@ -8,20 +8,20 @@ public class Cadete{
     private int id;
     private string? nombre;
     private string? direccion;
-    private double telefono;
-    //private List<Pedido>? listadoDePedidos = new List<Pedido>();
+    private string? telefono;
+    
 
     public int Id { get => id; set => id = value; }
     public string? Nombre { get => nombre; set => nombre = value; }
     public string? Direccion { get => direccion; set => direccion = value; }
-    public double Telefono { get => telefono; set => telefono = value; }
+    public string? Telefono { get => telefono; set => telefono = value; }
     //public List<Pedido>? ListadoDePedidos { get => listadoDePedidos; set => listadoDePedidos = value; }
 
-    public Cadete(int id, string nombre, string direccion, double telefono){
+    public Cadete(int id, string nombre, string direccion, string telefono){
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
-        this. telefono = telefono;
+        this.telefono = telefono;
     }
     public void MostrarDatosCadete(){
         Console.WriteLine("Datos Cadete: ");
