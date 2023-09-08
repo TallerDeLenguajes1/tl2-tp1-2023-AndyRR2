@@ -23,12 +23,12 @@ public class Cadete{
         this.direccion = direccion;
         this.telefono = telefono;
     }
-    public void MostrarDatosCadete(){
-        Console.WriteLine("Datos Cadete: ");
-        Console.WriteLine("Id: " + id);
-        Console.WriteLine("Nombre: " + nombre);
-        Console.WriteLine("Direccion: " + direccion);
-        Console.WriteLine("Telefono: " + telefono);
+    public string MostrarDatosCadete(){
+        return("Datos Cadete: " +
+        "\nId: " + id +
+        "\nNombre: " + nombre +
+        "\nDireccion: " + direccion +
+        "\nTelefono: " + telefono);
     }
     /*public void MostrarPedidosDelCadete(){
         foreach (var pedido in listadoDePedidos)

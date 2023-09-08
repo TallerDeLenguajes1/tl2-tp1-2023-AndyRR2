@@ -69,7 +69,13 @@ public class Program{
           Console.WriteLine("1-Entregar, 2-Cancelar: ");
           entrada = Console.ReadLine();
           result = int.TryParse(entrada, out opcion);
-          cadeteria.CambiarEstadoPedido(numero,opcion);
+          if (cadeteria.CambiarEstadoPedido(numero,opcion))
+          {
+            Console.WriteLine("Estado Cambiado");
+          }else
+          {
+            Console.WriteLine("Error al cambiar el Estado");
+          }
           break;
 
           case 4:
@@ -92,15 +98,15 @@ public class Program{
           break;
           
           case 6: 
-          cadeteria.mostrarDatosCadetes();
+          Console.WriteLine(cadeteria.mostrarDatosCadetes());
           break;
           
           case 7:
-          cadeteria.mostrarDatosClientes();
+          Console.WriteLine(cadeteria.mostrarDatosClientes());
           break;
           
           case 8:
-          cadeteria.mostrarPedidosCadeteria();
+          Console.WriteLine(cadeteria.mostrarPedidosCadeteria());
           break;
 
           case 9:

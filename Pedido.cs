@@ -25,19 +25,19 @@ public class Pedido{
         this.obs = obs;
         this.estado = "Pendiente";
     }
-    public void VerDireccionCliente(){
-        Console.WriteLine("Direccion: " + cliente.Direccion);
+    public string VerDireccionCliente(){
+        return("Direccion: " + cliente.Direccion);
     }
-    public void VerDatosCliente(){
-        Console.WriteLine("Nombre: " + cliente.Nombre);
-        Console.WriteLine("Telefono: " + cliente.Telefono);
-        Console.WriteLine("Referencia: " + cliente.DatosReferenciaDireccion);
+    public string VerDatosCliente(){
+        return("Nombre: " + cliente.Nombre +
+        "\nTelefono: " + cliente.Telefono +
+        "\nReferencia: " + cliente.DatosReferenciaDireccion);
     }
-    public void MostrarCadete(){
-        Console.WriteLine(Cadete.Nombre);
-        Console.WriteLine(Cadete.Direccion);
-        Console.WriteLine(Cadete.Id);
-        Console.WriteLine(Cadete.Telefono);
+    public string MostrarCadete(){
+        return(Cadete.Nombre + 
+        "\n" + Cadete.Direccion +
+        "\n" + Cadete.Id +
+        "\n" + Cadete.Telefono);
     }
 
 }

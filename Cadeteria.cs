@@ -7,6 +7,7 @@ using System.Xml;
 using EspacioCadete;
 using EspacioPedido;
 using EspacioAccesoADatos;
+using System.Text;
 
 public class Cadeteria{
     private string? nombre;
@@ -25,7 +26,7 @@ public class Cadeteria{
         this.telefono = telefono;
         this.ListaDeCadetes = listaCadetes;
     }
-    public void DarDeAltaPedido(){
+    public void DarDeAltaPedido(){//*********************
         int numero;
         string? obs, nombreCliente, direccion, referencia;
         double telefonoCliente;
@@ -52,29 +53,57 @@ public class Cadeteria{
         Pedido pedido = new Pedido(numero, obs, nombreCliente, direccion, telefonoCliente, referencia);
         listaPedidosCadeteria.Add(pedido);
     }
-    public void mostrarDatosCadetes(){
-        foreach(Cadete cadete in listaDeCadetes){
-            cadete.MostrarDatosCadete();
-        }
-    }
-    public void mostrarPedidosCadeteria(){
-    foreach (var pedido in listaPedidosCadeteria){
-        Console.WriteLine("Numero: " + pedido.Nro);
-        Console.WriteLine("Observacion: " + pedido.Obs);
-        Console.WriteLine("Estado: " + pedido.Estado);
-        Console.WriteLine("Precio: " + pedido.Precio);
-        pedido.VerDatosCliente();
-        pedido.VerDireccionCliente();
-        }
-    }
-    public void mostrarDatosClientes(){
-        foreach (var pedido in ListaPedidosCadeteria) 
+    
+    public string mostrarDatosCadetes(){//ok
+        if (listaDeCadetes!=null)
         {
-            pedido.VerDatosCliente();
-            pedido.VerDireccionCliente();    
+            StringBuilder datosCadete = new StringBuilder();
+            foreach(Cadete cadete in listaDeCadetes){
+                datosCadete.AppendLine(cadete.MostrarDatosCadete());
+            }
+            return(datosCadete.ToString());
+        }else
+        {
+            return("Lista de Cadetes vacia");
         }
     }
-    public void CambiarEstadoPedido(int numero,int opcion){
+    
+    public string mostrarPedidosCadeteria(){//ok
+    if (listaPedidosCadeteria!=null)
+    {
+        StringBuilder PedidosCadeteria = new StringBuilder();
+        foreach (var pedido in listaPedidosCadeteria){
+            PedidosCadeteria.AppendLine(pedido.Nro.ToString());
+            PedidosCadeteria.AppendLine(pedido.Obs);
+            PedidosCadeteria.AppendLine(pedido.Estado);
+            PedidosCadeteria.AppendLine(pedido.Precio.ToString());
+            PedidosCadeteria.AppendLine(pedido.VerDatosCliente());
+            PedidosCadeteria.AppendLine(pedido.VerDireccionCliente());
+        }
+        return(PedidosCadeteria.ToString());
+    }else
+    {
+        return("Lista de Pedidos Cadeteria vacia");
+    }
+    
+    }
+    public string mostrarDatosClientes(){//ok
+        if (listaPedidosCadeteria!=null)
+        {
+            StringBuilder DatosClientes = new StringBuilder();
+            foreach (var pedido in ListaPedidosCadeteria) 
+            {
+                DatosClientes.AppendLine(pedido.VerDatosCliente());  
+                DatosClientes.AppendLine(pedido.VerDireccionCliente());  
+            }
+            return(DatosClientes.ToString());
+        }else
+        {
+            return("No hay pedidos -> no hay clientes :(");
+        }
+    }
+    public bool CambiarEstadoPedido(int numero,int opcion){//ok
+        bool var=false;
         foreach (var pedido in listaPedidosCadeteria)
         {
             if (pedido.Nro==numero)
@@ -87,10 +116,12 @@ public class Cadeteria{
                     pedido.Estado="Cancelado";
                     break;
                 }
+                var=true;
             }
         }
+        return(var);
     }
-    public void RemoverPedidoCadeteria(int numero){
+    public void RemoverPedidoCadeteria(int numero){//****
         listaPedidosCadeteria.RemoveAt(numero-1);
     }
     public void AsignarCadeteAPedido(int id, int numero){
