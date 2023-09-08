@@ -124,7 +124,8 @@ public class Cadeteria{
     public void RemoverPedidoCadeteria(int numero){//****
         listaPedidosCadeteria.RemoveAt(numero-1);
     }
-    public void AsignarCadeteAPedido(int id, int numero){
+    public bool AsignarCadeteAPedido(int id, int numero){//ok
+        bool var=false;
         foreach (var pedido in listaPedidosCadeteria)
         {
             if (pedido.Nro==numero)
@@ -136,17 +137,28 @@ public class Cadeteria{
                         pedido.Cadete=cadete;
                     }
                 }
+                var=true;
             }
         }
+        return(var);
     }
-    public void mostrarCadeteDePedido(int numero){
-        foreach (var pedido in listaPedidosCadeteria)
+    public string mostrarCadeteDePedido(int numero){//ok
+        if (listaPedidosCadeteria!=null)
         {
-            if (pedido.Nro==numero)
+            StringBuilder Cadetes = new StringBuilder();
+            foreach (var pedido in listaPedidosCadeteria)
             {
-                pedido.MostrarCadete();
+                if (pedido.Nro==numero)
+                {
+                    Cadetes.AppendLine(pedido.MostrarCadete());
+                }
             }
+            return(Cadetes.ToString());
+        }else
+        {
+            return("No hay pedidos -> no hay cadetes");
         }
+        
     }
     /*public void AsignarPedidoACadete(int numero , int id){
         foreach (var cadete in listaDeCadetes)
